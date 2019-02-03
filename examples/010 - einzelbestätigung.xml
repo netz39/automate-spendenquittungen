@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-data xmlns="http://www.lucom.com/ffw/xml-data-1.0.xsd">
+	<form>catalog://Steuerformulare/gemein/034122</form>
+	<instance>
+		<datarow>
+			<element id="aussteller">Musterverein
+Musterstraße 1
+12345 Musterstadt</element>
+			<element id="name">Max Mustermann
+Musterstraße 1
+12345 Musterstadt</element>
+			<element id="wert">100,00</element>
+			<element id="wert2">einhundert</element>
+			<element id="datum">01.1.1970 00:00:00</element>
+			<element id="k2">true</element>
+			<element id="k3">false</element>
+			<element id="k4">true</element>
+			<element id="zwecke">Musterzweck 1
+Musterzweck 2</element>
+			<element id="k5">false</element>
+			<element id="stnr2">000/000/00000</element>
+			<element id="finamt2">Musterstadt</element>
+			<element id="datum3">01.01.1970 00:00:00</element>
+			<element id="ort_datum">Musterstadt, 01.01.1970</element>
+			<element id="zwecke2b2">Musterzweck 1
+Musterzweck 2</element>
+		</datarow>
+	</instance>
+</xml-data>
+
