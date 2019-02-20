@@ -9,11 +9,11 @@ Musterstraße 1
 			<element id="name">Max Mustermann
 Musterstraße 1
 12345 Musterstadt</element>
-			<element id="gesamtsumme">240.00</element>
-			<element id="wert2">zweihundertvierzig</element>
+			<element id="gesamtsumme">60.00</element>
+			<element id="wert2">sechzig</element>
 			<!-- Zuwendungsbeginn/Ende -->
 			<element id="datum">01.01.1970 00:00:00</element>
-			<element id="datum3">01.01.1970 00:00:00</element>
+			<element id="datum4">01.12.1970 00:00:00</element>
 			<!-- Wir sind wegen Förderung... -->
 			<element id="k3">false</element>
 			<!-- Die Einhaltung der satzungsmäßigen Voraussetzungen -->
@@ -22,7 +22,7 @@ Musterstraße 1
 Musterzweck 2</element>
 			<element id="stnr2">000/000/00000</element>
 			<element id="finamt2">Musterstadt</element>
-			<element id="datum4">01.01.1970 00:00:00</element>
+			<element id="datum3">01.06.1970 00:00:00</element>
 			<element id="zwecke2b2">Musterzweck 1
 Musterzweck 2</element>
 			<element id="k5">false</element>
