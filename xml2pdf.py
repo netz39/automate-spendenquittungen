@@ -2,17 +2,22 @@
 
 from time import sleep
 import os.path
+from sys import exit
 import argparse
 from selenium import webdriver
 import requests
 import shutil
 
-parser = argparse.ArgumentParser(description="Convert xml Spendenquittungen to pdf Spendenquittungen")
+parser = argparse.ArgumentParser(description='Convert xml Spendenquittungen to pdf Spendenquittungen')
 parser.add_argument('infile', type=str, nargs=1, help='XML file to convert.')
 args = parser.parse_args()
 
-pathToXML = os.path.abspath(args.infile[0])
-savePath = os.path.abspath(args.infile[0] + '.pdf')
+name, extension = os.path.splitext(args.infile[0])
+if not os.path.isfile(name + extension):
+    print('Error: File {} does not exists. Aborting.'.format(name + extension))
+    exit(1)
+pathToXML = os.path.abspath(name + extension)
+savePath = os.path.abspath(name + '.pdf')
 
 options = webdriver.ChromeOptions()
 options.add_argument('--headless')
@@ -20,7 +25,7 @@ options.add_argument('--headless')
 driver = webdriver.Chrome(chrome_options=options)
 
 # open website
-url="https://www.formulare-bfinv.de/ffw/action/invoke.do?id=Welcome"
+url='https://www.formulare-bfinv.de/ffw/action/invoke.do?id=Welcome'
 driver.get(url)
 # dismiss warning
 driver.find_element_by_class_name('button').click()
@@ -41,7 +46,7 @@ driver.find_element_by_name('$action:finish').click()
 
 # now we should be in the document view
 # generate the pdf
-driver.find_element_by_id("lip_toolbar_form:2fprint").click()
+driver.find_element_by_id('lip_toolbar_form:2fprint').click()
 # it takes a second to generate the pdf, so we wait
 sleep(1)
 
