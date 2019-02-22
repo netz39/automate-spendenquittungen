@@ -66,8 +66,10 @@ def createSingleDonationString(dictOrganization: dict, dictDonor: dict):
     amountStr = '{0} Euro'.format(num2str(int(dictDonor['Betrag'])))
     cents = int(100*(float(dictDonor['Betrag']) - int(dictDonor['Betrag'])))
     if cents != 0:
-        amountStr = amountStr + ' und {0} Cents'.format(num2str(cents))
+        amountStr = amountStr + ' und {0} Cent'.format(num2str(cents))
 
+    # amountStr must be at max 45 chars long, otherwise pdf generation fails
+    amountStr = amountStr[:45]
     template = template.replace('$wert2', amountStr)
     template = template.replace('$datum1', dictDonor['ZuwendungsBeginn'])
     
@@ -122,15 +124,17 @@ def createMultiDonationString(dictOrganization: dict, dictDonor: dict):
         betraegeStr = betraegeStr + '\t\t\t\t<element id="dat1">{0}</element>\n'.format(betrag['Datum'])
         betraegeStr = betraegeStr + '\t\t\t\t<element id="art">{0}</element>\n'.format(betrag['Art'])
         betraegeStr = betraegeStr + '\t\t\t\t<element id="ja_nein">{0}</element>\n'.format(betrag['VerzichtErstattung'])
-        betraegeStr = betraegeStr + '\t\t\t\t<element id="betrag1">{0}</element>\n'.format(betrag['Betrag'])
+        betraegeStr = betraegeStr + '\t\t\t\t<element id="betrag1">{0:.2f}</element>\n'.format(float(betrag['Betrag']))
         betraegeStr = betraegeStr + '\t\t\t</datarow>\n'
     template = template.replace('$betraege', betraegeStr)
     template = template.replace('$gesamtsumme', '{0:.2f}'.format(totalAmount))
     amountStr = '{0} Euro'.format(num2str(int(totalAmount)))
     cents = int(100*(float(totalAmount) - int(totalAmount)))
     if cents != 0:
-        amountStr = amountStr + ' und {0} Cents'.format(num2str(cents))
+        amountStr = amountStr + ' und {0} Cent'.format(num2str(cents))
 
+    # amountStr must be at max 45 chars long, otherwise pdf generation fails
+    amountStr = amountStr[:45]
     template = template.replace('$wert2', amountStr)
     
     return template
