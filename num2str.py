@@ -26,8 +26,10 @@ testcases = {
 }
 
 def lu_1(n):
+    assert type(n) is int
     assert n >= 0
     assert n < 10
+
     lu1 = { 
         0:"",
         1:"eins",
@@ -43,8 +45,10 @@ def lu_1(n):
     return lu1[n]
 
 def lu_1x(n):
+    assert type(n) is int
     assert n >= 0
     assert n < 20
+
     exceptions = {
         11:"elf",
         12:"zwölf",
@@ -59,6 +63,7 @@ def lu_1x(n):
         return lu_1(int(n%10)) + 'zehn'
 
 def lu_xx(n):
+    assert type(n) is int
     assert n >= 0
     assert n < 100
     exceptions = {
@@ -85,6 +90,7 @@ def lu_xx(n):
         return prefix + lu_1(int(n/10)) + 'zig'
     
 def lu_xxx(n):
+    assert type(n) is int
     assert n >= 0
     assert n < 1000
 
@@ -104,8 +110,10 @@ def lu_xxx(n):
     return prefix + suffix
 
 def lu_xxxx(n):
+    assert type(n) is int
     assert n >= 0
     assert n < 1000000
+
     if n < 1000:
         return lu_xxx(n)
 
@@ -122,6 +130,7 @@ def lu_xxxx(n):
     return prefix + suffix
 
 def num2str(number):
+    assert type(number) is int
     assert number >= 0
     assert number < 1000000
     return lu_xxxx(number)
