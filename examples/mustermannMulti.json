@@ -9,7 +9,7 @@
     "Betraege":[
         {
             "Datum":"01.01.1970 00:00:00",
-            "Art":"Mitgliedsbeitrag",
+            "Art":"Geldzuwendung",
             "VerzichtErstattung":"nein",
             "Betrag":"30"
         },

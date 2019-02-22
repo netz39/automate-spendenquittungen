@@ -5,6 +5,7 @@ import os.path
 from sys import exit
 import argparse
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 import requests
 import shutil
 
@@ -52,7 +53,12 @@ sleep(1)
 
 # selenium does not support downloading filestherefore we are
 # using requests package with cookie injection to download the actual pdf
-downloadlink = driver.find_element_by_link_text('PDF-Datei anzeigen').get_attribute('href')
+try:
+    downloadlink = driver.find_element_by_link_text('PDF-Datei anzeigen').get_attribute('href')
+except NoSuchElementException:
+    print('PDF failed to generate')
+    exit(1)
+    
 selenium_cookies = driver.get_cookies()
 session = requests.Session()
 f = requests.utils.cookiejar_from_dict
