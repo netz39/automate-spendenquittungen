@@ -1,0 +1,23 @@
+{
+    "Name":"Max Mustermann",
+    "Strasse":"Musterstraße",
+    "Hausnummer":"1",
+    "PLZ":"12345",
+    "Stadt":"Musterstadt",
+    "ZuwendungsBeginn":"01.01.1970 00:00:00",
+    "ZuwendungsEnde":"01.01.1970 00:00:00",
+    "Betraege":[
+        {
+            "Datum":"01.01.1970 00:00:00",
+            "Art":"Mitgliedsbeitrag",
+            "VerzichtErstattung":"false",
+            "Betrag":"30"
+        },
+        {
+            "Datum":"01.03.1970 00:00:00",
+            "Art":"Mitgliedsbeitrag",
+            "VerzichtErstattung":"false",
+            "Betrag":"30"
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "Name":"Musterverein",
+    "Strasse":"Musterstraße1",
+    "Hausnummer":"1",
+    "PLZ":"12345",
+    "Stadt":"Musterstadt",
+    "checkboxWegenFoerderung":"false",
+    "checkBoxEinhaltung":"true",
+    "SteuerbescheidNummer":"000/000/0000",
+    "SteuerbescheidDatum":"01.06.1970 00:00:00",
+    "checkboxEstg":"false",
+    "Finanzamt":"Musterstadt",
+    "Zwecke":["Musterzweck 1", "Musterzweck 2"]
+}
