@@ -8,7 +8,7 @@ templateXMLsingle = '<?xml version="1.0" encoding="UTF-8"?> \n\
 			<element id="aussteller">$aussteller</element>\n\
 			<element id="name">$name</element>\n\
 			<!-- Zuwendungsbetrag -->\n\
-			<element id="wert1">$wert1</element>\n\
+			<element id="wert">$wert1</element>\n\
 			<element id="wert2">$wert2</element>\n\
 			<!-- Datum der Zuwendung -->\n\
 			<element id="datum">$datum1</element>\n\

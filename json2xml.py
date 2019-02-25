@@ -171,3 +171,4 @@ else:
     foo = createMultiDonationString(dictVerein, dictDonor)
 with open(savePath, 'w') as outfile:
     outfile.write(foo)
+    
