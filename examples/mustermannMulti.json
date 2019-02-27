@@ -4,8 +4,6 @@
     "Hausnummer":"1",
     "PLZ":"12345",
     "Stadt":"Musterstadt",
-    "ZuwendungsBeginn":"01.01.1970 00:00:00",
-    "ZuwendungsEnde":"01.12.1970 00:00:00",
     "Betraege":[
         {
             "Datum":"01.01.1970 00:00:00",
