@@ -34,7 +34,7 @@ savePath = args.jsonDonor[0] + '.xml'
 
 
 def isSingleDonation(dictDonor: dict) -> bool():
-    return not 'Betraege' in dictDonor.keys()
+    return len(dictDonor['Betraege']) == 1
 
 
 def createSingleDonationString(dictOrganization: dict, dictDonor: dict):
@@ -71,20 +71,21 @@ def createSingleDonationString(dictOrganization: dict, dictDonor: dict):
         dictDonor['PLZ'],
         dictDonor['Stadt']
     ))
-    template = template.replace(
-        '$wert1', '{0:.2f}'.format(float(dictDonor['Betrag'])))
 
-    amountStr = '{0} Euro'.format(num2str(int(dictDonor['Betrag'])))
-    cents = int(100*(float(dictDonor['Betrag']) - int(dictDonor['Betrag'])))
+    amount = float(dictDonor['Betraege'][0]['Betrag'])
+    template = template.replace(
+        '$wert1', '{0:.2f}'.format(amount))
+    amountStr = '{0} Euro'.format(num2str(int(amount)))
+    cents = int(100*(amount - int(amount)))
     if cents != 0:
         amountStr = amountStr + ' und {0} Cent'.format(num2str(cents))
 
     # amountStr must be at max 45 chars long, otherwise pdf generation fails
     amountStr = amountStr[:45]
     template = template.replace('$wert2', amountStr)
-    template = template.replace('$datum1', dictDonor['ZuwendungsBeginn'])
+    template = template.replace('$datum1', dictDonor['Betraege'][0]['Datum'])
 
-    if dictDonor['VerzichtErstattung']:
+    if dictDonor['Betraege'][0]['VerzichtErstattung']:
         template = template.replace('$k1', 'true')
         template = template.replace('$k2', 'false')
     else:
@@ -127,9 +128,12 @@ def createMultiDonationString(dictOrganization: dict, dictDonor: dict):
         dictDonor['PLZ'],
         dictDonor['Stadt']
     ))
-    template = template.replace('$datum1', dictDonor['ZuwendungsBeginn'])
-    template = template.replace('$datum4', dictDonor['ZuwendungsEnde'])
-
+    dt = datetime.datetime.strptime(
+        dictDonor['Betraege'][0]['Datum'], '%d.%m.%Y %H:%M:%S')
+    template = template.replace('$datum1', datetime.datetime(
+        day=1, month=1, year=dt.year).strftime('%d.%m.%Y %H:%M:%S'))
+    template = template.replace('$datum4', datetime.datetime(
+        day=1, month=12, year=dt.year).strftime('%d.%m.%Y %H:%M:%S'))
     totalAmount = 0
     numBetraege = 0
     betraegeStr = ''
@@ -171,4 +175,3 @@ else:
     foo = createMultiDonationString(dictVerein, dictDonor)
 with open(savePath, 'w') as outfile:
     outfile.write(foo)
-    
