@@ -42,11 +42,23 @@ by = pandas.read_sql('select * from geschaeftsjahr', con)
 by_id = int(by[by.beginn.astype('str').contains(listDonors['year'])].id)
 for donor in listDonors['donors']:
     # file to save info to
-    # acc_id
+    fname = listDonors['year'] + donor['name'] + '.json'
     donor_id = getAccIdByName(donor['name'], acc)
+    if donor_id == 0:
+        print('Donor {name} not found, continuing.'.format(name=donor['name']))
+        continue
     # transactions coming from 'Spenden*' or 'Mitgliedsbeiträge'
     sourceIDs = list(acc[acc.name.str.contains('Spenden') | acc.name.str.contains('Mitgliedsbeiträge')].id) 
     transactions = trans[trans.habenkonto_id.isin(sourceIDs) & trans.sollkonto == donor_id]
+    # sort by date
+    donorDict = donor
+    for transaction in transactions:
+        tr = dict()
+        tr['Datum'] = transaction.datum
+        tr['Art'] = "Geldzuwendung" # Mitgliedsbeitrag
+        tr['VerzichtErstattung']="nein"
+        tr['Betrag'] = transaction.betrag
+        donorDict['Betraege'].append(tr)
 
 def getAccIdByName(name: str, acc: pandas.DataFrame):
     try:
