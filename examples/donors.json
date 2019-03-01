@@ -1,0 +1,19 @@
+{
+    "year": "1970",
+    "donors": [
+        {
+            "Name": "Max Mustermann",
+            "Strasse": "Musterstraße",
+            "Hausnummer": "1",
+            "PLZ": "12345",
+            "Stadt": "Musterstadt"
+        },
+        {
+            "Name": "Martina Mustermann",
+            "Strasse": "Musterstraße",
+            "Hausnummer": "1",
+            "PLZ": "12345",
+            "Stadt": "Musterstadt"
+        }
+    ]
+}
