@@ -6,10 +6,9 @@ import os
 
 import pandas
 import pymysql.cursors
-import datetime
 
 parser = argparse.ArgumentParser(
-    description='Create Spqndenquittung json files from jameica bookkeeping system')
+    description='Create Spendenquittung json files from jameica bookkeeping system')
 parser.add_argument('jameicaJSON', type=str, nargs=1,
                     help='JSON file containing bookkeeping config')
 parser.add_argument('listDonorsJSON', type=str, nargs=1,
@@ -27,7 +26,6 @@ try:
 except Exception as e:
     print(e)
     exit(1)
-
 
 con = pymysql.connect(host=jameica['dbHost'],
                       user=jameica['dbUser'],
