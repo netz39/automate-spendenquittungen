@@ -60,8 +60,7 @@ for donor in listDonors['donors']:
     tx_idx_year = trans.geschaeftsjahr_id == by_id
     tx_idx_valid = tx_idx_source & tx_idx_donor & tx_idx_year
     validTxs = trans[tx_idx_valid]
-    
-    donorDict = donor
+
     transactionList = []
     for idx, tx in validTxs.iterrows():
         txDict = dict()
@@ -73,6 +72,6 @@ for donor in listDonors['donors']:
         txDict['VerzichtErstattung'] = "nein"
         txDict['Betrag'] = tx.betrag
         transactionList.append(txDict)
-    donorDict['Betraege'] = sorted(transactionList, key=lambda tx: tx['Datum'])
+    donor['Betraege'] = sorted(transactionList, key=lambda tx: tx['Datum'])
     with open(fname, 'w') as fp:
-        json.dump(donorDict, fp, indent=4)
+        json.dump(donor, fp, indent=4)
