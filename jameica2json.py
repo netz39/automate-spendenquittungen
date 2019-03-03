@@ -74,4 +74,4 @@ for donor in listDonors['donors']:
         transactionList.append(txDict)
     donor['Betraege'] = sorted(transactionList, key=lambda tx: tx['Datum'])
     with open(fname, 'w') as fp:
-        json.dump(donor, fp, indent=4)
+        json.dump(donor, fp, indent=4, ensure_ascii=False)
