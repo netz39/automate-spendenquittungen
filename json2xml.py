@@ -83,7 +83,8 @@ def createSingleDonationString(dictOrganization: dict, dictDonor: dict):
     # amountStr must be at max 45 chars long, otherwise pdf generation fails
     amountStr = amountStr[:45]
     template = template.replace('$wert2', amountStr)
-    template = template.replace('$datum1', dictDonor['Betraege'][0]['Datum'])
+    dt = datetime.datetime.strptime(dictDonor['Betraege'][0]['Datum'], '%Y-%m-%d')
+    template = template.replace('$datum1', dt.strftime('%d.%m.%Y %H:%M:%S'))
 
     if dictDonor['Betraege'][0]['VerzichtErstattung']:
         template = template.replace('$k1', 'true')
