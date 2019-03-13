@@ -130,7 +130,7 @@ def createMultiDonationString(dictOrganization: dict, dictDonor: dict):
         dictDonor['Stadt']
     ))
     dt = datetime.datetime.strptime(
-        dictDonor['Betraege'][0]['Datum'], '%d.%m.%Y %H:%M:%S')
+        dictDonor['Betraege'][0]['Datum'], '%Y-%m-%d')
     template = template.replace('$datum1', datetime.datetime(
         day=1, month=1, year=dt.year).strftime('%d.%m.%Y %H:%M:%S'))
     template = template.replace('$datum4', datetime.datetime(
@@ -144,9 +144,11 @@ def createMultiDonationString(dictOrganization: dict, dictDonor: dict):
         betraegeStr = betraegeStr + '\t\t\t<datarow>\n'
         betraegeStr = betraegeStr + \
             '\t\t\t\t<element id="ID_LINE">{0}</element>\n'.format(numBetraege)
+        ds = datetime.datetime.strptime(
+            betrag['Datum'], '%Y-%m-%d').strftime('%d.%m.%Y %H:%M:%S')
         betraegeStr = betraegeStr + \
             '\t\t\t\t<element id="dat1">{0}</element>\n'.format(
-                betrag['Datum'])
+                ds)
         betraegeStr = betraegeStr + \
             '\t\t\t\t<element id="art">{0}</element>\n'.format(betrag['Art'])
         betraegeStr = betraegeStr + \
