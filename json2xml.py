@@ -4,7 +4,6 @@ import argparse
 import datetime
 import json
 import os
-import xml.etree.ElementTree as ET
 from sys import exit
 
 import xmltemplates
