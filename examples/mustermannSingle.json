@@ -1,0 +1,15 @@
+{
+    "Name":"Max Mustermann",
+    "Strasse":"Musterstraße",
+    "Hausnummer":"1",
+    "PLZ":"12345",
+    "Stadt":"Musterstadt",
+    "Betraege":[
+        {
+            "Datum":"01.01.1970 00:00:00",
+            "Art":"Geldzuwendung",
+            "VerzichtErstattung":"nein",
+            "Betrag":"30"
+        }
+    ]
+}

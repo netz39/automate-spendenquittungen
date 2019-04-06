@@ -1,14 +1,17 @@
 #! /usr/bin/env python3
 
-from time import sleep
-import os.path
-from sys import exit
 import argparse
-from selenium import webdriver
-import requests
+import os.path
 import shutil
+from sys import exit
+from time import sleep
 
-parser = argparse.ArgumentParser(description='Convert xml Spendenquittungen to pdf Spendenquittungen')
+import requests
+from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
+
+parser = argparse.ArgumentParser(
+    description='Convert xml Spendenquittungen to pdf Spendenquittungen')
 parser.add_argument('infile', type=str, nargs=1, help='XML file to convert.')
 args = parser.parse_args()
 
@@ -25,7 +28,7 @@ options.add_argument('--headless')
 driver = webdriver.Chrome(chrome_options=options)
 
 # open website
-url='https://www.formulare-bfinv.de/ffw/action/invoke.do?id=Welcome'
+url = 'https://www.formulare-bfinv.de/ffw/action/invoke.do?id=Welcome'
 driver.get(url)
 # dismiss warning
 driver.find_element_by_class_name('button').click()
@@ -52,14 +55,20 @@ sleep(1)
 
 # selenium does not support downloading filestherefore we are
 # using requests package with cookie injection to download the actual pdf
-downloadlink = driver.find_element_by_link_text('PDF-Datei anzeigen').get_attribute('href')
+try:
+    downloadlink = driver.find_element_by_link_text(
+        'PDF-Datei anzeigen').get_attribute('href')
+except NoSuchElementException:
+    print('PDF failed to generate')
+    exit(1)
+
 selenium_cookies = driver.get_cookies()
 session = requests.Session()
 f = requests.utils.cookiejar_from_dict
 for ck in selenium_cookies:
     for k in ck:
         ck[k] = str(ck[k])
-    session.cookies.set(ck['name'],ck['value'])
+    session.cookies.set(ck['name'], ck['value'])
 
 response = session.get(downloadlink, stream=True)
 with open(savePath, 'wb') as out_file:
