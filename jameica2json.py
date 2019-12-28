@@ -18,7 +18,7 @@ parser.add_argument('listDonorsJSON', type=str, nargs=1,
 args = parser.parse_args()
 
 try:
-    listDonors = json.load(open(os.path.abspath(args.listDonorsJSON[0])))
+    listDonors = json.load(sys.stdin)
 except Exception as e:
     print(e, file=sys.stderr)
     exit(1)
