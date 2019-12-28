@@ -2,18 +2,12 @@
     "year": "1970",
     "donors": [
         {
-            "Name": "Max Mustermann",
-            "Strasse": "Musterstraße",
-            "Hausnummer": "1",
-            "PLZ": "12345",
-            "Stadt": "Musterstadt"
+            "name": "Max Mustermann\n",
+            "address": "Musterstraße 1\n 12345 Musterstadt\n"
         },
         {
-            "Name": "Martina Mustermann",
-            "Strasse": "Musterstraße",
-            "Hausnummer": "1",
-            "PLZ": "12345",
-            "Stadt": "Musterstadt"
+            "name": "Martina Mustermann\n",
+            "address": "Musterstraße 1\n 12345 Musterstadt\n"
         }
     ]
 }

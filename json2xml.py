@@ -38,12 +38,9 @@ def isSingleDonation(dictDonor: dict) -> bool():
 
 def createSingleDonationString(dictOrganization: dict, dictDonor: dict):
     template = xmltemplates.templateXMLsingle
-    template = template.replace('$aussteller', '{0}\n{1} {2}\n{3} {4}'.format(
-        dictOrganization['Name'],
-        dictOrganization['Strasse'],
-        dictOrganization['Hausnummer'],
-        dictOrganization['PLZ'],
-        dictOrganization['Stadt']
+    template = template.replace('$aussteller', '{0}{1}'.format(
+        dictOrganization['name'],
+        dictOrganization['address']
     ))
     template = template.replace(
         '$k3', dictOrganization['checkboxWegenFoerderung'])
@@ -63,12 +60,9 @@ def createSingleDonationString(dictOrganization: dict, dictDonor: dict):
         datetime.date.today().strftime('%d.%m.%Y')
     ))
 
-    template = template.replace('$name', '{0}\n{1} {2}\n{3} {4}'.format(
-        dictDonor['Name'],
-        dictDonor['Strasse'],
-        dictDonor['Hausnummer'],
-        dictDonor['PLZ'],
-        dictDonor['Stadt']
+    template = template.replace('$name', '{0}{1}'.format(
+        dictDonor['name'],
+        dictDonor['address']
     ))
 
     amount = float(dictDonor['Betraege'][0]['Betrag'])

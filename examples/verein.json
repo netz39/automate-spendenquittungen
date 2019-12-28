@@ -1,9 +1,6 @@
 {
-    "Name":"Musterverein",
-    "Strasse":"Musterstraße",
-    "Hausnummer":"1",
-    "PLZ":"12345",
-    "Stadt":"Musterstadt",
+    "name":"Musterverein\n",
+    "address":"Musterstraße 1\n 12345 Musterstadt\n",
     "checkboxWegenFoerderung":"false",
     "checkBoxEinhaltung":"true",
     "SteuerbescheidNummer":"000/000/0000",
