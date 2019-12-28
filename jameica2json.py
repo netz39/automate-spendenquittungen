@@ -3,6 +3,7 @@
 import argparse
 import json
 import os
+import sys
 
 import pandas
 import pymysql.cursors
@@ -19,12 +20,12 @@ args = parser.parse_args()
 try:
     listDonors = json.load(open(os.path.abspath(args.listDonorsJSON[0])))
 except Exception as e:
-    print(e)
+    print(e, file=sys.stderr)
     exit(1)
 try:
     jameica = json.load(open(os.path.abspath(args.jameicaJSON[0])))
 except Exception as e:
-    print(e)
+    print(e, file=sys.stderr)
     exit(1)
 
 con = pymysql.connect(host=jameica['dbHost'],
