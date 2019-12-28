@@ -37,18 +37,17 @@ con = pymysql.connect(host=jameica['dbHost'],
 acc = pandas.read_sql('select * from konto', con)
 trans = pandas.read_sql('select * from buchung', con)
 by_id = int(pandas.read_sql(
-    'select id from geschaeftsjahr where beginn like "{}-%"'.format(listDonors["year"]), con).id)
+    f"select id from geschaeftsjahr where beginn like '{listDonors['year']}-%'", con).id)
 
 for donor in listDonors['donors']:
     # file to save info to
-    fname = '{year}.{name}.json'.format(
-        year=listDonors['year'], name=donor['Name'])
+    fname = f"{args.outPath[0]}{listDonors['year']}.{donor['name'].strip()}.json"
 
     try:
         donor_id = int(acc[acc.name.astype('str') ==
-                           'Kreditor - ' + donor['Name']].id)
+                           'Kreditor - ' + donor['name'].strip()].id)
     except Exception:
-        print('Donor {name} not found, continuing.'.format(name=donor['Name']))
+        print(f"Donor {donor['name']} not found, continuing.", file=sys.stderr)
         continue
     # transactions coming from 'Spenden*' or 'Mitgliedsbeiträge'
     donationAccIDs = list(acc[acc.name.str.contains('Spenden')].id)
