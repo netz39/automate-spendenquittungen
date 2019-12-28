@@ -12,9 +12,8 @@ parser = argparse.ArgumentParser(
     description='Create Spendenquittung json files from jameica bookkeeping system')
 parser.add_argument('jameicaJSON', type=str, nargs=1,
                     help='JSON file containing bookkeeping config')
-parser.add_argument('listDonorsJSON', type=str, nargs=1,
-                    help='JSON file containing data on the donors (names, adresses, year)')
-
+parser.add_argument('outPath', type=str, nargs=1,
+                    help='path to store the output files')
 args = parser.parse_args()
 
 try:
