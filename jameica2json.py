@@ -47,7 +47,7 @@ for donor in listDonors['donors']:
         donor_id = int(acc[acc.name.astype('str') ==
                            'Kreditor - ' + donor['name'].strip()].id)
     except Exception:
-        print(f"Donor {donor['name']} not found, continuing.", file=sys.stderr)
+        print(f"Donor {donor['name'].strip()} not found, continuing.", file=sys.stderr)
         continue
     # transactions coming from 'Spenden*' or 'Mitgliedsbeiträge'
     donationAccIDs = list(acc[acc.name.str.contains('Spenden')].id)
