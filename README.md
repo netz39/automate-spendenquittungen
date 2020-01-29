@@ -18,6 +18,13 @@
 ## 3. Schritt
 - Automatisierung der Erstellung des JSON aus der Buchhaltungsdatenbank
 
+## Installation
+
+python3 -m venv env && source env/bin/activate
+pip install -r requirements.txt
+Install chromium: sudo apt install chromium-browser 
+Install chromedriver: https://chromedriver.chromium.org/home
+
 ## Benutzung
 ```bash
 find netz39/2018 -name "*.json" -exec  python3 json2xml.py netz39/netz39.json {} \;
