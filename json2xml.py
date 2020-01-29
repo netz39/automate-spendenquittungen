@@ -90,12 +90,9 @@ def createSingleDonationString(dictOrganization: dict, dictDonor: dict):
 
 def createMultiDonationString(dictOrganization: dict, dictDonor: dict):
     template = xmltemplates.templateXMLmulti
-    template = template.replace('$aussteller', '{0}\n{1} {2}\n{3} {4}'.format(
-        dictOrganization['Name'],
-        dictOrganization['Strasse'],
-        dictOrganization['Hausnummer'],
-        dictOrganization['PLZ'],
-        dictOrganization['Stadt']
+    template = template.replace('$aussteller', '{0}{1}'.format(
+        dictOrganization['name'],
+        dictOrganization['address']
     ))
     template = template.replace(
         '$k3', dictOrganization['checkboxWegenFoerderung'])
@@ -115,13 +112,11 @@ def createMultiDonationString(dictOrganization: dict, dictDonor: dict):
         datetime.date.today().strftime('%d.%m.%Y')
     ))
 
-    template = template.replace('$name', '{0}\n{1} {2}\n{3} {4}'.format(
-        dictDonor['Name'],
-        dictDonor['Strasse'],
-        dictDonor['Hausnummer'],
-        dictDonor['PLZ'],
-        dictDonor['Stadt']
+    template = template.replace('$name', '{0}\n{1}\n'.format(
+        dictDonor['name'],
+        dictDonor['address']
     ))
+
     dt = datetime.datetime.strptime(
         dictDonor['Betraege'][0]['Datum'], '%Y-%m-%d')
     template = template.replace('$datum1', datetime.datetime(
