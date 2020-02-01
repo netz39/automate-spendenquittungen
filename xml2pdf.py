@@ -23,9 +23,10 @@ pathToXML = os.path.abspath(name + extension)
 savePath = os.path.abspath(name + '.pdf')
 
 options = webdriver.ChromeOptions()
-options.add_argument('--headless')
+options.headless = True
+# options.add_argument('--headless')
 # options.add_argument('--no-sandbox')
-driver = webdriver.Chrome(chrome_options=options)
+driver = webdriver.Chrome(options=options)
 
 # open website
 url = 'https://www.formulare-bfinv.de/ffw/action/invoke.do?id=Welcome'
