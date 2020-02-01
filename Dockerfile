@@ -1,17 +1,14 @@
-FROM debian:buster
+FROM selenium/standalone-chrome:latest
 
+USER root
 RUN DEBIAN_FRONTEND=noninteractive\
     apt-get update && \
     apt-get -y upgrade && \
     apt-get -y install \
-        wget \
         xvfb \
         unzip \
         python3 \
-        python3-pip \
-        wget \
-        chromium \
-        chromium-driver && \
+        python3-pip && \
     apt-get clean autoclean && \
     apt-get autoremove && \
     rm -rf /var/lib/apt/lists/*
